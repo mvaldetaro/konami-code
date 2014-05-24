@@ -1,13 +1,15 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<polymer-element name="konami-code" attributes="image sound">
+<polymer-element name="konami-code" attributes="image sound top right bottom left">
   <template id="konami">
-    <div class="toasty" style="background: url('{{imagesrc}}') center center no-repeat;"></div>
+    <div class="toasty" style="background: url('{{image}}') center center no-repeat;"></div>
     <audio class="sound"><source src='{{sound}}' type='audio/mp3'></audio>
     <style>
       /* Easter Egg */
       .toasty {
         position: fixed;
+        top:{{top}};
         bottom:0;
+        left:0;
         right: -150px;
         width: 150px;
         height: 145px;
@@ -22,9 +24,19 @@
     </style>
   </template>
   <script>
+    var kctag = document.querySelector("konami-code");
+    var attrTop = kctag.getAttribute("top");
+    var attrRight = kctag.getAttribute("right");
+    var attrBottom = kctag.getAttribute("bottom");
+    var attrLeft = kctag.getAttribute("left");
+    console.log(attrTop);
     Polymer('konami-code', {
-      images:"src/assets/images/toasty.png",
+      image:"src/assets/images/toasty.png",
       sound:"src/assets/sound/toasty-mk2.mp3",
+      top: attrTop,
+      right: attrRight,
+      bottom: attrBottom,
+      left: attrLeft,
       ready: function(){
         var Konami = function (callback) {
         var konami = {

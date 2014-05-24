@@ -1,12 +1,11 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<polymer-element name="konami-code" attributes="image">
+<polymer-element name="konami-code" attributes="image sound">
   <template id="konami">
-    <div class="toasty"></div>
-    <audio class="sound"><source src='assets/sound/toasty-mk2.mp3' type='audio/mp3'></audio>
+    <div class="toasty" style="background: url('{{imagesrc}}') center center no-repeat;"></div>
+    <audio class="sound"><source src='{{sound}}' type='audio/mp3'></audio>
     <style>
       /* Easter Egg */
       .toasty {
-        background: url(assets/images/toasty.png) center center no-repeat;
         position: fixed;
         bottom:0;
         right: -150px;
@@ -21,13 +20,11 @@
         right: 0px;
       }
     </style>
-    <script>
-
-    </script>
   </template>
   <script>
     Polymer('konami-code', {
-      image:"src/assets/images/toasty.png",
+      images:"src/assets/images/toasty.png",
+      sound:"src/assets/sound/toasty-mk2.mp3",
       ready: function(){
         var Konami = function (callback) {
         var konami = {

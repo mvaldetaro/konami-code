@@ -120,6 +120,11 @@
         }
         return konami;
       };
+      var toasty = this.shadowRoot.querySelector(".toasty");
+      var easter_egg = new Konami(function() {
+        toasty.classList.add("anima");
+        setTimeout(function(){ toasty.classList.remove('anima') }, 1000);
+      });
     }
   });
   </script>

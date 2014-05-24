@@ -1,11 +1,12 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <polymer-element name="konami-code" attributes="image">
   <template id="konami">
-    <div class="toasty"> <p>Komami Code!</p> </div>
+    <div class="toasty"></div>
+    <audio class="sound"><source src='assets/sound/toasty-mk2.mp3' type='audio/mp3'></audio>
     <style>
       /* Easter Egg */
       .toasty {
-        background: url(assets/images/toasty.png) center center no-repeat red;
+        background: url(assets/images/toasty.png) center center no-repeat;
         position: fixed;
         bottom:0;
         right: -150px;
@@ -121,8 +122,10 @@
         return konami;
       };
       var toasty = this.shadowRoot.querySelector(".toasty");
+      var sound = this.shadowRoot.querySelector(".sound");
       var easter_egg = new Konami(function() {
         toasty.classList.add("anima");
+        sound.play();
         setTimeout(function(){ toasty.classList.remove('anima') }, 1000);
       });
     }

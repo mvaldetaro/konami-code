@@ -5,7 +5,7 @@
   "authors": [
     "Magno Valdetaro <mvaldetaro@gmail.com>"
   ],
-  "description": "Easter Egg Web Component.",
+  "description": "A simple Web Componets for Easter Egg",
   "main": "src/konami-code-loader.html",
   "keywords": [
     "polymer",

@@ -1,5 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<polymer-element name="konami-code" attributes="image sound top right bottom left height width">
+<polymer-element name="konami-code" attributes="image sound itop iright ibottom ileft etop eright ebottom eleft height width time">
   <template id="konami">
     <div class="toasty" style="background: url('{{image}}') center center no-repeat;"></div>
     <audio class="sound"><source src='{{sound}}' type='audio/mp3'></audio>
@@ -7,45 +7,67 @@
       /* Easter Egg */
       .toasty {
         position: fixed;
-        {{cssTop}}
-        {{cssBottom}}
-        {{cssLeft}}
-        {{cssRight}}
+        {{cssTopStart}}
+        {{cssBottomStart}}
+        {{cssLeftStart}}
+        {{cssRightStart}}
         width: {{width}};
         height: {{height}};
-        transition: right 0.5s;
-        -webkit-transition: right 0.5s;
+        transition: all {{time}};
+        -webkit-transition: all {{time}};
       }
       .toasty.anima {
-        transition: right 0.5s;
-        -webkit-transition: right 0.5s;
-        right: 0px;
+        transition: all {{time}};
+        -webkit-transition: all {{time}};
+        {{cssTopEnd}}
+        {{cssBottomEnd}}
+        {{cssLeftEnd}}
+        {{cssRightEnd}}
       }
     </style>
   </template>
   <script>
-    var kcTag       = document.querySelector("konami-code");
-    var attrTop     = kcTag.getAttribute("top");
-    var attrRight   = kcTag.getAttribute("right");
-    var attrBottom  = kcTag.getAttribute("bottom");
-    var attrLeft    = kcTag.getAttribute("left");
-    if (attrTop) {    var ptop="top:"+attrTop+";"; }
-    if (attrRight) {  var pRight="right:"+attrRight+";"; }
-    if (attrBottom) { var pBottom="bottom:"+attrBottom+";"; }
-    if (attrLeft) {   var pLeft="left:"+attrLeft+";"; }
+    //Selecionando o elemento <konami-code>
+    var kc           = document.querySelector("konami-code");
+
+    // Armazena valores inicias das propriedades top, right, bottom e left.
+    var startTop     = kc.getAttribute("itop"),
+        startRight   = kc.getAttribute("iright"),
+        startBottom  = kc.getAttribute("ibottom"),
+        startLeft    = kc.getAttribute("ileft");
+
+    // Armazena valores finais das propriedades top, right, bottom e left.
+    var endTop     = kc.getAttribute("etop"),
+        endRight   = kc.getAttribute("eright"),
+        endBottom  = kc.getAttribute("ebottom"),
+        endLeft    = kc.getAttribute("eleft");
+
+    //Testando os atributos iniciais e armazendano a propridade e o valor.
+    if (startTop)    {  var spTop="top:"+startTop+";"; }
+    if (startRight)  {  var spRight="right:"+startRight+";"; }
+    if (startBottom) {  var spBottom="bottom:"+startBottom+";"; }
+    if (startLeft)   {  var spLeft="left:"+startLeft+";"; }
+
+    //Testando os atributos finais e armazendano a propridade e o valor.
+    if (endTop)    {  var epTop="top:"+endTop+";"; }
+    if (endRight)  {  var epRight="right:"+endRight+";"; }
+    if (endBottom) {  var epBottom="bottom:"+endBottom+";"; }
+    if (endLeft)   {  var epLeft="left:"+endLeft+";"; }
+
     Polymer('konami-code', {
-      cssTop: ptop,
-      cssRight: pRight,
-      cssBottom: pBottom,
-      cssLeft: pLeft,
+      cssTopStart: spTop,
+      cssRightStart: spRight,
+      cssBottomStart: spBottom,
+      cssLeftStart: spLeft,
+      cssTopEnd: epTop,
+      cssRightEnd: epRight,
+      cssBottomEnd: epBottom,
+      cssLeftEnd: epLeft,
       height: "145px",
       width: "150px",
+      time: "0.5s",
       image: "src/assets/images/toasty.png",
       sound: "src/assets/sound/toasty-mk2.mp3",
-      top: attrTop,
-      right: attrRight,
-      bottom: attrBottom,
-      left: attrLeft,
       ready: function(){
         var Konami = function (callback) {
         var konami = {

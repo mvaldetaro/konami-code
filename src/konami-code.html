@@ -1,5 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<polymer-element name="konami-code" attributes="image sound top right bottom left">
+<polymer-element name="konami-code" attributes="image sound top right bottom left height width">
   <template id="konami">
     <div class="toasty" style="background: url('{{image}}') center center no-repeat;"></div>
     <audio class="sound"><source src='{{sound}}' type='audio/mp3'></audio>
@@ -7,12 +7,12 @@
       /* Easter Egg */
       .toasty {
         position: fixed;
-        top:{{top}};
-        bottom:0;
-        left:0;
-        right: -150px;
-        width: 150px;
-        height: 145px;
+        {{cssTop}}
+        {{cssBottom}}
+        {{cssLeft}}
+        {{cssRight}}
+        width: {{width}};
+        height: {{height}};
         transition: right 0.5s;
         -webkit-transition: right 0.5s;
       }
@@ -24,15 +24,24 @@
     </style>
   </template>
   <script>
-    var kctag = document.querySelector("konami-code");
-    var attrTop = kctag.getAttribute("top");
-    var attrRight = kctag.getAttribute("right");
-    var attrBottom = kctag.getAttribute("bottom");
-    var attrLeft = kctag.getAttribute("left");
-    console.log(attrTop);
+    var kcTag       = document.querySelector("konami-code");
+    var attrTop     = kcTag.getAttribute("top");
+    var attrRight   = kcTag.getAttribute("right");
+    var attrBottom  = kcTag.getAttribute("bottom");
+    var attrLeft    = kcTag.getAttribute("left");
+    if (attrTop) {    var ptop="top:"+attrTop+";"; }
+    if (attrRight) {  var pRight="right:"+attrRight+";"; }
+    if (attrBottom) { var pBottom="bottom:"+attrBottom+";"; }
+    if (attrLeft) {   var pLeft="left:"+attrLeft+";"; }
     Polymer('konami-code', {
-      image:"src/assets/images/toasty.png",
-      sound:"src/assets/sound/toasty-mk2.mp3",
+      cssTop: ptop,
+      cssRight: pRight,
+      cssBottom: pBottom,
+      cssLeft: pLeft,
+      height: "145px",
+      width: "150px",
+      image: "src/assets/images/toasty.png",
+      sound: "src/assets/sound/toasty-mk2.mp3",
       top: attrTop,
       right: attrRight,
       bottom: attrBottom,

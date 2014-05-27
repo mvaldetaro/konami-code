@@ -10,7 +10,7 @@ A simple Web Componets for Easter Egg.
 Install the component using [Bower](http://bower.io/):
 
 ```sh
-$ bower install konami-code --save
+$ bower install konami-ce --save
 ```
 
 Or [download as ZIP](https://github.com/mvaldetaro/konami-code/archive/master.zip).
@@ -39,10 +39,19 @@ Or [download as ZIP](https://github.com/mvaldetaro/konami-code/archive/master.zi
 
 Attribute | Options         | Default                           | Description
 ---       | ---             | ---                               | ---
-`image`   |                 | `src/assets/images/toasty.png`    |
-`sound`   |                 | `src/assets/sound/toasty-mk2.mp3` |
-`width`   |                 | `150px`                           | The visibility of loader
-`height`  |                 | `145px`                           | The visibility of loader
+`image`   |                 | `src/assets/images/toasty.png`    | Specifies the image source
+`sound`   |                 | `src/assets/sound/toasty-mk2.mp3` | Specifies the sound source
+`width`   |                 | `150px`                           | Specifies the width of the content
+`height`  |                 | `145px`                           | Specifies the height of the content
+`itop`    |                 |                                   | The initial top property position
+`iright`  |                 |                                   | The initial right property position
+`ibottom` |                 | `0`                               | The initial bottom property position
+`ileft`   |                 | `-150px`                          | The initial left property position
+`etop`    |                 |                                   | The final top property position
+`eright`  |                 |                                   | The final right property position
+`ebottom` |                 | `0`                               | The final bottom property position
+`eleft`   |                 | `0`                               | The final left property position
+`time`    |                 | `0`                               | Set the animation time
 
 ## Browser Support
 

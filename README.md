@@ -74,3 +74,7 @@ Check [Release](https://github.com/mvaldetaro/konami-code/releases) list.
 ## License
 
 [MIT License](http://mvaldetaro.mit-license.org/) © Magno Valdetaro
+
+## Notes
+
+https://github.com/snaptortoise/konami-js
